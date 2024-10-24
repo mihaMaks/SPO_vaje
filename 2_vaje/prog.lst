@@ -1,0 +1,16 @@
+00000            prog  START   0    
+00000  03002A          LDA     42    
+00003  02002A          LDA     @42    
+00006  01002A          LDA     #42    
+00009  03200F          LDA     x    
+0000C  02200C          LDA     @x    
+0000F  012009          LDA     #x    
+00012  010FFF          LDA     #4095    
+00015  690FFF          LDB     #-1    . ista vrednost v registru
+00018                  ORG     21    . naredi lukno med ukazi velikosti (2?)
+00015  032006          LDA     *0 (WORD 42)    . nam ustvari label z vrednostjo 42
+00018  3F2FFD    halt  J       halt    
+                  
+0001B  00002A    x     WORD    42    
+0001E  00002A    *0    WORD    42    
+00021                  END     prog    
