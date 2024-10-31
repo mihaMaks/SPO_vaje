@@ -1,0 +1,55 @@
+PROG    START 0
+        JSUB S_INIT
+        LDA #4
+        JSUB SUMN
+
+HALT    J HALT
+
+. REKURZIVNO SESTEJE 1+ ... +N (N JE PODAN V A)
+SUMN    STL @SP         .PUSH L - SLED REKURZIJE
+        JSUB S_PUSH
+        STB @SP         .PUSH B
+        JSUB S_PUSH
+
+        COMP #0
+        JEQ SUMOUT
+        RMO A,B         .SHRANIMO A NEKAM
+        SUB #1          .ZMANJSAMO A
+        JSUB SUMN       .POVOZIMO VREDNOST V L IN SE ZACIKLAMO
+        ADDR B,A
+SUMOUT  JSUB S_POP      .POP V REGISTER B     .NAMESTO "LDL SUML"
+        LDB @SP
+        JSUB S_POP      .POP V REGISTER L, VNEMO SE V NALOV KJER SMO KLICALI JSUB SUMN +1
+        LDL @SP
+        RSUB
+SUML    WORD 0
+
+
+
+. NASTAVI VREDNOST SP NA ZACETEK STACKA
+S_INIT  STA STACKA
+        LDA #STACK
+        STA #SP
+        LDA STACKA
+        RSUB
+. POVECA VREDNOST SP ZA ENO BESEDO
+S_PUSH  STA STACKA
+        LDA SP
+        ADD #3
+        STA SP
+        LDA STACKA
+        RSUB
+. ZMANJSA VREDNOST SP ZA ENO BESEDO
+S_POP   STA STACKA
+        LDA SP
+        SUB #3
+        STA SP
+        LDA STACKA
+        RSUB
+
+
+.INTPUT  WORD 4
+SP      WORD 0                  . STACK POINTER
+STACKA  WORD 0
+STACK   RESW 1000
+        END PROG
