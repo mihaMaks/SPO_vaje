@@ -1,0 +1,42 @@
+00000            poly    START   0    . x⁴+2x³+3x²+4x+5 v točki x=2.
+00000  032031            LDA     x    
+00003  4B2043            JSUB    square    
+00006  4B2040            JSUB    square    . A=x^4
+00009  AC03              RMO     A,B    . B=x^4
+                  
+0000B  032026            LDA     x    . reset A
+0000E  4B203D            JSUB    cube    . A=x^3
+00011  23202C            MUL     a3    . A=a3*x^3
+00014  9003              ADDR    A,B    . B= x^4 + a3*x^3
+                  
+00016  03201B            LDA     x    . reset A
+00019  4B202D            JSUB    square    
+0001C  23201E            MUL     a2    
+0001F  9003              ADDR    A,B    . B= x^4 + a3*x^3 + a2*x^2
+                  
+00021  032010            LDA     x    . reset A
+00024  232013            MUL     a1    
+00027  9003              ADDR    A,B    . B= x^4 + a3*x^3 + a2*x^2 + a1*x
+00029  AC30              RMO     B,A    
+0002B  1B2009            ADD     a0    
+0002E  0F2015            STA     res    
+00031  3F2FFD    halt    J       halt    
+                  
+00034  000002    x       WORD    2    
+00037  000005    a0      WORD    5    
+0003A  000004    a1      WORD    4    
+0003D  000003    a2      WORD    3    
+00040  000002    a3      WORD    2    
+00043  000000    cube_b  RESW    1    
+00046  000000    res     RESW    1    
+                  
+00049  9800      square  MULR    A,A    
+0004B  4F0000            RSUB        
+                  
+0004E  7B2FF2    cube    STB     cube_b    
+00051  AC03              RMO     A,B    
+00053  9800              MULR    A,A    
+00055  9830              MULR    B,A    
+00057  6B2FE9            LDB     cube_b    
+0005A  4F0000            RSUB        
+                  

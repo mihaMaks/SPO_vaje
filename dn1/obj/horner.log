@@ -1,0 +1,29 @@
+***** Section <default> *****
+Stats: size=124  blocks=124  symbols=18  literals=0  relocations=0
+Blocks
+    name        start   size  #ins #dir #sto
+    <default>   00000  0007C    32   11    3
+Symbols
+    name             hex       dec  scope     kind      type      description
+    IN_LOOP       00000F        15  local     relative  code      label
+    LOOP          000006         6  local     relative  code      label
+    a             000069       105  local     relative  data      label
+    a0            000054        84  local     relative  data      label
+    a1            000057        87  local     relative  data      label
+    a2            00005A        90  local     relative  data      label
+    a3            00005D        93  local     relative  data      label
+    a4            000060        96  local     relative  data      label
+    halt          00004E        78  local     relative  code      label
+    horner_step   000075       117  local     relative  code      label
+    in            00006C       108  local     relative  data      label
+    in2           00006F       111  local     relative  data      label
+    in3           000072       114  local     relative  data      label
+    koef_index    000066       102  local     relative  data      label
+    lastin        000075       117  local     absolute  notlabel  *
+    poly          000000         0  exported  relative  code      label
+    table_index   000063        99  local     relative  data      label
+    x             000051        81  local     relative  data      label
+Literals
+    label   definition
+Relocations
+    address length flag symbol

@@ -1,0 +1,137 @@
+00000            REC     START   0    
+00000  4B20DD            JSUB    S_INIT    
+00003  B430      LOOP    CLEAR   B    
+00005  4B2018            JSUB    READ    
+00008  290000            COMP    #0    
+0000B  33200F            JEQ     HALT    
+0000E  690001            LDB     #1    
+00011  4B20A1            JSUB    FACT    
+00014  4B2044            JSUB    NUM    
+00017  4B208C            JSUB    NL    
+0001A  3F2FE6            J       LOOP    
+                  
+                  
+0001D  3F2FFD    HALT    J       HALT    
+                  
+                  
+                  . READ FROM DEVICE FA
+00020  E30CDD    READ    TD      DEVICE    
+00023  332FFA            JEQ     READ    
+00026  DB0CDD            RD      DEVICE    . Preberemo znak iz vhoda
+00029  29000A            COMP    #10    . Preverimo, ali je konec datoteke
+0002C  332024            JEQ     OUT    . Če je konec, končamo program
+0002F  290000            COMP    #0    
+00032  33201E            JEQ     OUT    
+00035  0F0CDA            STA     READ_A    
+00038  1F0CD1            SUB     OFFSET    
+0003B  9030              ADDR    B,A    
+0003D  AC03              RMO     A,B    
+0003F  030CDA            LDA     READ_A    
+00042  AC30              RMO     B,A    
+00044  030CDA            LDA     READ_A    
+00047  AC30              RMO     B,A    
+00049  21000A            MUL     #10    
+0004C  AC03              RMO     A,B    
+0004E  B400              CLEAR   A    
+00050  3F2FCD            J       READ    . Gremo nazaj na branje
+00053  AC30      OUT     RMO     B,A    
+00055  25000A            DIV     #10    
+00058  4F0000            RSUB        
+0005B  690001    NUM     LDB     #1    
+0005E  05000A            LDX     #10    
+00061  6D000A            LDS     #10    
+00064  A004              COMPR   A,S    
+00066  3B2034            JLT     DIGIT    
+00069  AC05              RMO     A,T    
+0006B  AC50      L1      RMO     T,A    
+0006D  9C30              DIVR    B,A    . UGOTOVI VELIKOST STEVILA
+0006F  A004              COMPR   A,S    
+00071  9813              MULR    X,B    
+00073  372FF5            JGT     L1    
+00076  9C13              DIVR    X,B    
+                  . prva stevka ze v A, V T JE CEL A
+00078  1B0CD1    L2      ADD     OFFSET    
+0007B  DD0001            WD      #1    
+0007E  1F0CD1            SUB     OFFSET    
+00081  AC04              RMO     A,S    
+00083  AC50              RMO     T,A    
+00085  7B0CD4            STB     L2_B    
+00088  9843              MULR    S,B    
+0008A  9430              SUBR    B,A    
+0008C  6B0CD4            LDB     L2_B    
+0008F  9C13              DIVR    X,B    
+00091  6D0001            LDS     #1    
+00094  A034              COMPR   B,S    
+00096  AC05              RMO     A,T    
+00098  9C30              DIVR    B,A    
+0009A  372FDB            JGT     L2    
+0009D  1B0CD1    DIGIT   ADD     OFFSET    
+000A0  DD0001            WD      #1    
+000A3  4F0000            RSUB        
+                  
+000A6  0F0CD7    NL      STA     NL_A    
+000A9  01000A            LDA     #10    
+000AC  DD0001            WD      #1    
+000AF  030CD7            LDA     NL_A    
+000B2  4F0000            RSUB        
+                  . __________FAKULTETA___________.
+000B5  16205B    FACT    STL     @SP    . PUSH L - SLED REKURZIJE
+000B8  4B2034            JSUB    PUSH    
+000BB  7A2055            STB     @SP    . PUSH B
+000BE  4B202E            JSUB    PUSH    
+                  
+000C1  290001            COMP    #1    
+000C4  33200A            JEQ     SUMOUT    
+000C7  AC03              RMO     A,B    . SHRANIMO A NEKAM
+000C9  1D0001            SUB     #1    . ZMANJSAMO A
+000CC  4B2FE6            JSUB    FACT    . POVOZIMO VREDNOST V L IN SE ZACIKLAMO
+000CF  9830              MULR    B,A    
+000D1  4B202D    SUMOUT  JSUB    POP    . POP V REGISTER B     .NAMESTO "LDL SUML"
+000D4  6A203C            LDB     @SP    
+000D7  4B2027            JSUB    POP    . POP V REGISTER L, VNEMO SE V NALOV KJER SMO KLICALI JSUB FACT +1
+000DA  0A2036            LDL     @SP    
+000DD  4F0000            RSUB        
+                  
+                  
+                  
+                  . _______________________.
+                  . STACK
+                  . VZOREC POP:
+                  . JSUB POP        PREMIK SP V -
+                  . LDB @SP         NALGANJE IZ SP V POLJUBEN REGISTER
+                  . VZOREC PUSH:
+                  . STB @SP         LANAGANJE NA STACK
+                  . JSUB PUSH       PREMIK SP V +
+                  
+                  
+                  . NASTAVI VREDNOST SP NA ZACETEK STACKA
+000E0  0F2033    S_INIT  STA     STACKA    
+000E3  012033            LDA     #STACK    
+000E6  0D202A            STA     #SP    
+000E9  03202A            LDA     STACKA    
+000EC  4F0000            RSUB        
+                  . POVECA VREDNOST SP ZA ENO BESEDO
+000EF  0F2024    PUSH    STA     STACKA    
+000F2  03201E            LDA     SP    
+000F5  190003            ADD     #3    
+000F8  0F2018            STA     SP    
+000FB  032018            LDA     STACKA    
+000FE  4F0000            RSUB        
+                  . ZMANJSA VREDNOST SP ZA ENO BESEDO
+00101  0F2012    POP     STA     STACKA    
+00104  03200C            LDA     SP    
+00107  1D0003            SUB     #3    
+0010A  0F2006            STA     SP    
+0010D  032006            LDA     STACKA    
+00110  4F0000            RSUB        
+                  
+                  
+00113  000000    SP      WORD    0    . STACK POINTER
+00116  000000    STACKA  WORD    0    
+00119  00....00  STACK   RESW    1000    
+00CD1  000030    OFFSET  WORD    48    
+00CD4  000000    L2_B    RESW    1    
+00CD7  000000    NL_A    RESW    1    
+00CDA  000000    READ_A  RESW    1    
+00CDD  FA        DEVICE  BYTE    250    
+00CDE                    END     REC    

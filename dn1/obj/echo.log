@@ -1,0 +1,25 @@
+***** Section <default> *****
+Stats: size=177  blocks=177  symbols=14  literals=0  relocations=0
+Blocks
+    name        start   size  #ins #dir #sto
+    <default>   00000  000B1    51    7    2
+Symbols
+    name         hex       dec  scope     kind      type      description
+    CHAR      000017        23  local     relative  code      label
+    ECHO      000000         0  exported  relative  code      label
+    END       0000B1       177  local     absolute  notlabel  *
+    HALT      000014        20  local     relative  code      label
+    L1        00004C        76  local     relative  code      label
+    L2        00005E        94  local     relative  code      label
+    L2_B      000089       137  local     relative  data      label
+    NIZ       000092       146  local     relative  data      label
+    NL        00001D        29  local     relative  code      label
+    NL_A      000086       134  local     relative  data      label
+    NUM       000044        68  local     relative  code      label
+    OFFSET    00008C       140  local     relative  data      label
+    STEVILO   00008F       143  local     relative  data      label
+    STRING    00002C        44  local     relative  code      label
+Literals
+    label   definition
+Relocations
+    address length flag symbol

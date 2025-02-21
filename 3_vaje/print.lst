@@ -1,22 +1,23 @@
-00000            PUTS    START   0    
+00000            PRINT   START   0    
 00000  B410              CLEAR   X    
-00002  53A01E    LOOP    LDCH    TXT,X    
-00005  4B2006            JSUB    PUTC    . STDOUT
-00008  2D0006            TIX     #LEN    
+00002  53A024    LOOP    LDCH    TXT,X    
+00005  4B200C            JSUB    PUTC    . STDOUT
+00008  2D0009            TIX     #LEN    
 0000B  3B2FF4            JLT     LOOP    
-0000E                    END     PUTS    
+0000E  4B2009            JSUB    NL    
+00011  3F2FFD    HALT    J       HALT    
                   
                   . subrutina ki izpise znak v registru A
-0000E  DF201B    PUTC    WD      DEVICE    
-00011  4F0000            RSUB        
-00014  0F2012    NL      STA     NL_A    
-00017  51000A            LDCH    #10    
-0001A  DF200F            WD      DEVICE    
-0001D  032009            LDA     NL_A    
-00020  4F0000            RSUB        
-00023  53....45  TXT     BYTE    C'SIC/XE'    
-00029            END     EQU     *    
-00029            LEN     EQU     END-TXT    . LEN NI NASLOV V RAMU AMPAK NASLOV END - TXT = DOLZINA TABELE
-00029  000000    NL_A    RESW    1    
-0002C  0000AA    DEVICE  WORD    170    
-                  
+00014  DD00AA    PUTC    WD      #170    
+00017  4F0000            RSUB        
+0001A  0F2015    NL      STA     NL_A    
+0001D  51000A            LDCH    #10    
+00020  DD0001            WD      #1    
+00023  03200C            LDA     NL_A    
+00026  4F0000            RSUB        
+00029  53....41  TXT     BYTE    C'SIC/XE!WA'    
+00032            END     EQU     *    
+00032            LEN     EQU     END-TXT    . LEN NI NASLOV V RAMU AMPAK NASLOV END - TXT = DOLZINA TABELE
+00032  000000    NL_A    RESW    1    
+00035  0000AA    DEVICE  WORD    170    
+00038                    END     PRINT    

@@ -1,0 +1,23 @@
+***** Section <default> *****
+Stats: size=68  blocks=68  symbols=12  literals=0  relocations=0
+Blocks
+    name        start   size  #ins #dir #sto
+    <default>   00000  00044    17    7    1
+Symbols
+    name          hex       dec  scope     kind      type      description
+    HALT       000009         9  local     relative  code      label
+    LIMIT      00003E        62  local     relative  data      label
+    LOOP       000014        20  local     relative  code      label
+    LOOP2      000026        38  local     relative  code      label
+    SCR        000000         0  exported  relative  code      label
+    SCRCLEAR   00000C        12  local     relative  code      label
+    SCRCOLS    000035        53  local     relative  data      label
+    SCREEN     000032        50  local     relative  data      label
+    SCRFILL    000023        35  local     relative  code      label
+    SCRLEN     00003B        59  local     relative  data      label
+    SCRROWS    000038        56  local     relative  data      label
+    ST_A       000041        65  local     relative  data      label
+Literals
+    label   definition
+Relocations
+    address length flag symbol

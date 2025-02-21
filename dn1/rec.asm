@@ -49,7 +49,7 @@ L1      RMO T,A
         MULR X,B
         JGT  L1
         DIVR X,B
-        . prva stevka ze v A, V T JE CEL A
+.        . prva stevka ze v A, V T JE CEL A
 L2      ADD OFFSET
         WD #1
         SUB OFFSET

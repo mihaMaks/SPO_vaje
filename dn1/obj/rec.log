@@ -1,0 +1,47 @@
+***** Section <default> *****
+Stats: size=3294  blocks=3294  symbols=23  literals=0  relocations=13
+Blocks
+    name        start   size  #ins #dir #sto
+    <default>   00000  00CDE   100    6    4
+Symbols
+    name        hex       dec  scope     kind      type      description
+    DEVICE   000CDD      3293  local     relative  data      label
+    DIGIT    00009D       157  local     relative  code      label
+    FACT     0000B5       181  local     relative  code      label
+    HALT     00001D        29  local     relative  code      label
+    L1       00006B       107  local     relative  code      label
+    L2       000078       120  local     relative  code      label
+    L2_B     000CD4      3284  local     relative  data      label
+    LOOP     000003         3  local     relative  code      label
+    NL       0000A6       166  local     relative  code      label
+    NL_A     000CD7      3287  local     relative  data      label
+    NUM      00005B        91  local     relative  code      label
+    OFFSET   000CD1      3281  local     relative  data      label
+    OUT      000053        83  local     relative  code      label
+    POP      000101       257  local     relative  code      label
+    PUSH     0000EF       239  local     relative  code      label
+    READ     000020        32  local     relative  code      label
+    READ_A   000CDA      3290  local     relative  data      label
+    REC      000000         0  exported  relative  code      label
+    SP       000113       275  local     relative  data      label
+    STACK    000119       281  local     relative  data      label
+    STACKA   000116       278  local     relative  data      label
+    SUMOUT   0000D1       209  local     relative  code      label
+    S_INIT   0000E0       224  local     relative  code      label
+Literals
+    label   definition
+Relocations
+    address length flag symbol
+    00021        3
+    00027        3
+    00036        3
+    00039        3
+    00040        3
+    00045        3
+    00079        3
+    0007F        3
+    00086        3
+    0008D        3
+    0009E        3
+    000A7        3
+    000B0        3

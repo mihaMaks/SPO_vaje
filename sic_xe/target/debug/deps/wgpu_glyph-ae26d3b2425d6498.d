@@ -1,0 +1,10 @@
+/Users/makspc/Documents/FAKS/SPO/sic_xe/target/debug/deps/libwgpu_glyph-ae26d3b2425d6498.rmeta: /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/lib.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/builder.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/pipeline.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/pipeline/cache.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/region.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/shader/glyph.wgsl
+
+/Users/makspc/Documents/FAKS/SPO/sic_xe/target/debug/deps/wgpu_glyph-ae26d3b2425d6498.d: /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/lib.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/builder.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/pipeline.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/pipeline/cache.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/region.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/shader/glyph.wgsl
+
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/lib.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/builder.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/pipeline.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/pipeline/cache.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/region.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wgpu_glyph-0.19.0/src/shader/glyph.wgsl:

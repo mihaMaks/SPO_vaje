@@ -1,0 +1,36 @@
+                  . neposredno naslavljanje
+00000            prog  START   0    
+                  . sestevanje
+00000  032036          LDA     x    
+00003  1B2036          ADD     y    
+00006  0F2036          STA     sum    
+                  . odstevanje
+00009  03202D          LDA     x    
+0000C  1F202D          SUB     y    
+0000F  0F2030          STA     diff    
+                  . mnozenje
+00012  032024          LDA     x    
+00015  232024          MUL     y    
+00018  0F202A          STA     prod    
+                  . kvocient
+0001B  03201B          LDA     x    
+0001E  27201B          DIV     y    
+00021  0F2024          STA     quot    
+                  . mod
+00024  032015          LDA     y    
+00027  23201E          MUL     quot    
+0002A  0F201E          STA     mod    
+0002D  032009          LDA     x    
+00030  1F2018          SUB     mod    
+00033  0F2015          STA     mod    
+                  
+00036  3F2FFD    halt  J       halt    
+                  
+                  
+00039  00000C    x     WORD    12    
+0003C  000005    y     WORD    5    
+0003F  000000    sum   RESW    1    
+00042  000000    diff  RESW    1    
+00045  000000    prod  RESW    1    
+00048  000000    quot  RESW    1    
+0004B  000000    mod   RESW    1    

@@ -1,0 +1,10 @@
+/Users/makspc/Documents/FAKS/SPO/sic_xe/target/debug/deps/libobjc2_encode-3d1bea87437ce790.rmeta: /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/lib.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/encoding.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/encoding_box.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/helper.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/parse.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/static_str.rs
+
+/Users/makspc/Documents/FAKS/SPO/sic_xe/target/debug/deps/objc2_encode-3d1bea87437ce790.d: /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/lib.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/encoding.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/encoding_box.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/helper.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/parse.rs /Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/static_str.rs
+
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/lib.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/encoding.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/encoding_box.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/helper.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/parse.rs:
+/Users/makspc/.cargo/registry/src/index.crates.io-6f17d22bba15001f/objc2-encode-4.0.3/src/static_str.rs:

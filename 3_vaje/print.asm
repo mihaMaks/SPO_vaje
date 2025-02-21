@@ -8,16 +8,16 @@ LOOP    LDCH TXT,X
 HALT    J HALT
 
 . subrutina ki izpise znak v registru A
-PUTC    WD 0xAA
+PUTC    WD #170
         RSUB
 NL      STA NL_A
         LDCH #10
-        WD 0xAA
+        WD #1
         LDA NL_A
         RSUB
-TXT     BYTE   C'SIC/XE'
+TXT     BYTE   C'SIC/XE!WA'
 END     EQU *
 LEN     EQU END - TXT           .LEN NI NASLOV V RAMU AMPAK NASLOV END - TXT = DOLZINA TABELE
 NL_A    RESW 1
-DEVICE WORD X'000001'
+DEVICE  WORD 170
         END PRINT

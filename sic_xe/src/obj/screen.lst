@@ -1,0 +1,28 @@
+00000            SCR       START   0    
+00000  010030              LDA     #48    
+00003  4B201D              JSUB    SCRFILL    
+00006  4B2003              JSUB    SCRCLEAR    
+00009  3F2FFD    HALT      J       HALT    
+                  
+0000C  0F2032    SCRCLEAR  STA     ST_A    
+0000F  B400                CLEAR   A    
+00011  07201E              LDX     SCREEN    
+00014  578000    LOOP      STCH    0,X    
+00017  2F2024              TIX     LIMIT    
+0001A  3B2FF7              JLT     LOOP    
+0001D  032021              LDA     ST_A    
+00020  4F0000              RSUB        
+00023  07200C    SCRFILL   LDX     SCREEN    
+00026  578000    LOOP2     STCH    0,X    
+00029  2F2012              TIX     LIMIT    
+0002C  3B2FF7              JLT     LOOP2    
+0002F  4F0000              RSUB        
+                  
+                  . Default data for screen
+00032  00B800    SCREEN    WORD    X'00B800'    
+00035  000050    SCRCOLS   BYTE    X'000050'    
+00038  000019    SCRROWS   BYTE    X'000019'    
+0003B  0007CF    SCRLEN    WORD    X'0007CF'    
+0003E  00BFD0    LIMIT     WORD    X'00BFD0'    
+00041  000000    ST_A      RESW    1    
+00044                      END     SCR    

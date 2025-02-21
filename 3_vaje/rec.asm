@@ -1,11 +1,11 @@
 REC     START 0
+        JSUB S_INIT
 LOOP    CLEAR B
         JSUB READ
         COMP #0
         JEQ HALT
-        JSUB S_INIT
-        CLEAR B
-        JSUB SUMN 
+        LDB #1
+        JSUB FACT 
         JSUB NUM
         JSUB NL
         J LOOP
@@ -15,9 +15,9 @@ HALT    J HALT
 
 
 . READ FROM DEVICE FA
-READ    TD	    #250
-	JEQ	    READ
-        RD      #250        . Preberemo znak iz vhoda
+READ    TD	DEVICE
+	JEQ	READ
+        RD      DEVICE        . Preberemo znak iz vhoda
         COMP    #10         . Preverimo, ali je konec datoteke
         JEQ     OUT         . Če je konec, končamo program
         COMP    #0
@@ -39,17 +39,18 @@ OUT     RMO B,A
         RSUB
 NUM     LDB #1
         LDX #10
+        LDS #10
+        COMPR A,S
+        JLT  DIGIT
         RMO A,T
-L1      DIVR B,A        . UGOTOVI VELIKOST STEVILA
-        LDS #0
+L1      RMO T,A
+        DIVR B,A        . UGOTOVI VELIKOST STEVILA
         COMPR A,S
         MULR X,B
-        RMO T,A
         JGT  L1
-        DIVR X,B        . NASTAVI B NA FLOOR LOG10(STEVILO)
         DIVR X,B
-L2      DIVR B,A        . N-TA STEVKA
-        ADD OFFSET
+        . prva stevka ze v A, V T JE CEL A
+L2      ADD OFFSET
         WD #1
         SUB OFFSET
         RMO A,S
@@ -59,10 +60,13 @@ L2      DIVR B,A        . N-TA STEVKA
         SUBR B,A
         LDB L2_B
         DIVR X,B
-        LDS #0
+        LDS #1
         COMPR B,S
         RMO A,T
+        DIVR B,A
         JGT L2
+DIGIT   ADD OFFSET
+        WD #1
         RSUB
 
 NL      STA NL_A
@@ -71,20 +75,20 @@ NL      STA NL_A
         LDA NL_A
         RSUB
 .__________FAKULTETA___________.
-SUMN    STL @SP         .PUSH L - SLED REKURZIJE
+FACT    STL @SP         .PUSH L - SLED REKURZIJE
         JSUB PUSH
         STB @SP         .PUSH B
         JSUB PUSH
 
-        COMP #0
+        COMP #1
         JEQ SUMOUT
         RMO A,B         .SHRANIMO A NEKAM
         SUB #1          .ZMANJSAMO A
-        JSUB SUMN       .POVOZIMO VREDNOST V L IN SE ZACIKLAMO
-        ADDR B,A
+        JSUB FACT       .POVOZIMO VREDNOST V L IN SE ZACIKLAMO
+        MULR B,A
 SUMOUT  JSUB POP      .POP V REGISTER B     .NAMESTO "LDL SUML"
         LDB @SP
-        JSUB POP      .POP V REGISTER L, VNEMO SE V NALOV KJER SMO KLICALI JSUB SUMN +1
+        JSUB POP      .POP V REGISTER L, VNEMO SE V NALOV KJER SMO KLICALI JSUB FACT +1
         LDL @SP
         RSUB
 
@@ -129,4 +133,5 @@ OFFSET  WORD 48
 L2_B    RESW 1
 NL_A    RESW 1
 READ_A  RESW 1
+DEVICE  BYTE 0xFA
         END REC

@@ -1,19 +1,20 @@
 ***** Section <default> *****
-Stats: size=47  blocks=47  symbols=9  literals=0  relocations=0
+Stats: size=56  blocks=56  symbols=10  literals=0  relocations=0
 Blocks
     name        start   size  #ins #dir #sto
-    <default>   00000  0002F    12    6    1
+    <default>   00000  00038    14    6    1
 Symbols
     name        hex       dec  scope     kind      type      description
-    DEVICE   00002C        44  local     relative  data      label
-    END      000029        41  local     absolute  notlabel  *
-    LEN      000006         6  local     absolute  notlabel  END-TXT
+    DEVICE   000035        53  local     relative  data      label
+    END      000032        50  local     absolute  notlabel  *
+    HALT     000011        17  local     relative  code      label
+    LEN      000009         9  local     absolute  notlabel  END-TXT
     LOOP     000002         2  local     relative  code      label
-    NL       000014        20  local     relative  code      label
-    NL_A     000029        41  local     relative  data      label
-    PUTC     00000E        14  local     relative  code      label
-    PUTS     000000         0  exported  relative  code      label
-    TXT      000023        35  local     relative  data      label
+    NL       00001A        26  local     relative  code      label
+    NL_A     000032        50  local     relative  data      label
+    PRINT    000000         0  exported  relative  code      label
+    PUTC     000014        20  local     relative  code      label
+    TXT      000029        41  local     relative  data      label
 Literals
     label   definition
 Relocations

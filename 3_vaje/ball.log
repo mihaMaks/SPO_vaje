@@ -1,0 +1,35 @@
+***** Section <default> *****
+Stats: size=259  blocks=259  symbols=24  literals=0  relocations=0
+Blocks
+    name        start   size  #ins #dir #sto
+    <default>   00000  00103    80   13    2
+Symbols
+    name            hex       dec  scope     kind      type      description
+    BACK_D       000020        32  local     relative  code      label
+    BACK_R       00001D        29  local     relative  code      label
+    BALL         000000         0  exported  relative  code      label
+    BOUNCE_DX    0000D7       215  local     relative  code      label
+    BOUNCE_DY    000093       147  local     relative  code      label
+    CHECK_DOWN   00007D       125  local     relative  code      label
+    CHECK_R      0000A9       169  local     relative  code      label
+    CHECK_UP     000088       136  local     relative  code      label
+    DX           000056        86  local     relative  data      label
+    DY           000059        89  local     relative  data      label
+    HEIGHT       000071       113  local     relative  data      label
+    LIMIT        000074       116  local     relative  data      label
+    LOOP         000011        17  local     relative  code      label
+    MINUS        000077       119  local     relative  data      label
+    MOVE_XY      0000ED       237  local     relative  code      label
+    NOT_OOB      00003A        58  local     relative  code      label
+    OOB          00007A       122  local     relative  data      label
+    SCREEN       00006B       107  local     relative  data      label
+    STORAGE_A    000062        98  local     relative  data      label
+    STORAGE_X    000065       101  local     relative  data      label
+    STORAGE_X2   000068       104  local     relative  data      label
+    ST_DX        00005F        95  local     relative  data      label
+    ST_DY        00005C        92  local     relative  data      label
+    WIDTH        00006E       110  local     relative  data      label
+Literals
+    label   definition
+Relocations
+    address length flag symbol

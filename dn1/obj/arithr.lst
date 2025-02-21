@@ -1,0 +1,33 @@
+00000            prog  START   0    
+00000  03202C          LDA     y    
+00003  6B2026          LDB     x    
+                  .. sestevanje
+00006  9030            ADDR    B,A    
+00008  0F2027          STA     sum    
+0000B  9430            SUBR    B,A    
+                  .. odstevanje
+0000D  9403            SUBR    A,B    
+0000F  7B2023          STB     diff    
+00012  9003            ADDR    A,B    
+                  .. mnozenje
+00014  9830            MULR    B,A    
+00016  0F201F          STA     prod    
+00019  9C30            DIVR    B,A    
+                  .. kvocient
+0001B  AC31            RMO     B,X    . shranimo B za mod
+0001D  9C03            DIVR    A,B    
+0001F  7B2019          STB     quot    
+                  .. mod
+00022  9830            MULR    B,A    
+00024  9401            SUBR    A,X    
+00026  132015          STX     mod    
+00029  3F2FFD    halt  J       halt    
+                  
+0002C  00000B    x     WORD    11    
+0002F  000004    y     WORD    4    
+00032  000000    sum   RESW    1    
+00035  000000    diff  RESW    1    
+00038  000000    prod  RESW    1    
+0003B  000000    quot  RESW    1    
+0003E  000000    mod   RESW    1    
+                  

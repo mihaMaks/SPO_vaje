@@ -1,23 +1,23 @@
 prog    START 0
         LDA y
         LDB x
-        . sestevanje
+.        . sestevanje
         ADDR B,A
         STA sum
         SUBR B,A
-        . odstevanje
+.        . odstevanje
         SUBR A,B
         STB diff
         ADDR A,B
-        . mnozenje
+.        . mnozenje
         MULR B,A
         STA prod
         DIVR B,A
-        . kvocient
+.        . kvocient
         RMO B,X     .shranimo B za mod
         DIVR A,B
         STB quot
-        . mod
+.        . mod
         MULR B,A
         SUBR A,X
         STX mod

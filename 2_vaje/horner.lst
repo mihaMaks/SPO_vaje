@@ -1,0 +1,26 @@
+00000            poly  START   0    . x⁴+2x³+3x²+4x+5 v točki x=2.
+00000  03201D          LDA     x    
+00003  AC03            RMO     A,B    . B=x
+00005  232027          MUL     a4    . A=a4*x
+                  
+00008  1B2021          ADD     a3    . A= a3 + x*a4
+0000B  9830            MULR    B,A    
+                  
+0000D  1B2019          ADD     a2    . A= a2 + x(a3 + x*a4)
+00010  9830            MULR    B,A    
+                  
+00012  1B2011          ADD     a1    . A= a1 + (a2 + x(a3 + x*a4))
+00015  9830            MULR    B,A    
+                  
+00017  1B2009          ADD     a0    
+0001A  0F2015          STA     res    
+0001D  3F2FFD    halt  J       halt    
+                  
+00020  000002    x     WORD    2    
+00023  000005    a0    WORD    5    
+00026  000004    a1    WORD    4    
+00029  000003    a2    WORD    3    
+0002C  000002    a3    WORD    2    
+0002F  000001    a4    WORD    1    
+00032  000000    res   RESW    1    
+                  

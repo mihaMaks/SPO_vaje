@@ -1,0 +1,72 @@
+00000            ECHO     START   0    
+                  . LDA #NIZ       . TEST STRING SUBROUTINE
+                  . CLEAR X
+                  . JSUB STRING
+                  
+                  . JSUB NL        . TEST NL SUBROUTINE
+                  
+00000  032081             LDA     STEVILO    . NUM SUBROUTINE
+00003  4B2033             JSUB    NUM    
+00006  4B2009             JSUB    NL    
+                  
+                  
+00009  3F2FFD    HALT     J       HALT    
+                  . izpis znaka, podanega v registru A.
+0000C  DD0001    CHAR     WD      #1    
+0000F  4F0000             RSUB        
+                  . izpis znaka za skok v novo vrstico.
+00012  0F2066    NL       STA     NL_A    
+00015  01000A             LDA     #10    
+00018  DD0001             WD      #1    
+0001B  03205D             LDA     NL_A    
+0001E  4F0000             RSUB        
+                  . zpis niza, ki se nahaja na naslovu, podanem v registru A.
+                  . Podprite C-jevske nize, t.j. nizi se končajo z znakom s kodo 0.
+00021  AC01      STRING   RMO     A,X    
+00023  538000             LDCH    0,X    
+00026  750000             LDT     #0    
+00029  DD0001             WD      #1    
+0002C  A005               COMPR   A,T    
+0002E  AC10               RMO     X,A    
+00030  190001             ADD     #1    
+00033  372FEB             JGT     STRING    
+00036  4F0000             RSUB        
+                  . desetiški izpis števila, podanega v registru A.
+                  . Ta rutina je malce bolj zapletena, zato je pametno malce vnaprej razmisliti.
+                  . Kako pridemo do števk števila? V kakšnem vrstnem redu jih dobimo?
+00039  690001    NUM      LDB     #1    
+0003C  05000A             LDX     #10    
+0003F  AC05               RMO     A,T    
+00041  9C30      L1       DIVR    B,A    . UGOTOVI VELIKOST STEVILA
+00043  6D0000             LDS     #0    
+00046  A004               COMPR   A,S    
+00048  9813               MULR    X,B    
+0004A  AC50               RMO     T,A    
+0004C  372FF2             JGT     L1    
+0004F  9C13               DIVR    X,B    . NASTAVI B NA FLOOR LOG10(STEVILO)
+00051  9C13               DIVR    X,B    
+00053  9C30      L2       DIVR    B,A    . N-TA STEVKA
+00055  1B2029             ADD     OFFSET    
+00058  DD0001             WD      #1    
+0005B  1F2023             SUB     OFFSET    
+0005E  AC04               RMO     A,S    
+00060  AC50               RMO     T,A    
+00062  7B2019             STB     L2_B    
+00065  9843               MULR    S,B    
+00067  9430               SUBR    B,A    
+00069  6B2012             LDB     L2_B    
+0006C  9C13               DIVR    X,B    
+0006E  6D0000             LDS     #0    
+00071  A034               COMPR   B,S    
+00073  AC05               RMO     A,T    
+00075  372FDB             JGT     L2    
+00078  4F0000             RSUB        
+                  
+0007B  000000    NL_A     RESW    1    
+0007E  000000    L2_B     RESW    1    
+00081  000030    OFFSET   WORD    48    
+00084  0085DB    STEVILO  WORD    34267    
+00087  54....30  NIZ      BYTE    C'TO JE NIZ KI SE KONCA Z KODO 0'    
+000A5  00                 BYTE    0    
+000A6            END      EQU     *    
+000A6                     END     ECHO    

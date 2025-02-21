@@ -1,0 +1,13 @@
+[package]
+name = "sic_xe"
+version = "0.1.0"
+edition = "2021"
+
+
+
+[dependencies]
+cursive = "0.21.1"
+gtk = "0.18"
+crossterm = "0.26"
+iced = { version = "0.9", features = ["tokio"] }
+

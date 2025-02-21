@@ -1,0 +1,11 @@
+00000            CAT   START   0    
+00000  E10000    WAIT  TD      #0    
+00003  332FFA          JEQ     WAIT    
+                  
+00006  D90000          RD      #0    . Preberemo znak iz vhoda
+00009  290000          COMP    #0    . Preverimo, ali je konec datoteke
+0000C  332006          JEQ     END    . Če je konec, končamo program
+0000F  DD0001          WD      #1    . Drugače izpišemo znak na izhod
+                  
+00012  3F2FEB          J       WAIT    . Gremo nazaj na branje
+00015            END   END     CAT    

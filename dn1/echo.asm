@@ -1,9 +1,9 @@
 ECHO    START 0
-        .LDA #NIZ       . TEST STRING SUBROUTINE
-        .CLEAR X
-        .JSUB STRING   
+        LDA #NIZ       . TEST STRING SUBROUTINE
+        CLEAR X
+        JSUB STRING   
 
-        .JSUB NL        . TEST NL SUBROUTINE
+        JSUB NL        . TEST NL SUBROUTINE
 
         LDA STEVILO     . NUM SUBROUTINE
         JSUB NUM

@@ -1,22 +1,22 @@
-. neposredno naslavljanje
 prog    START 0
-        . sestevanje
+. neposredno naslavljanje
+.        . sestevanje
         LDA x
         ADD y
         STA sum
-        . odstevanje
+.        . odstevanje
         LDA x
         SUB y
         STA diff
-        . mnozenje
+.        . mnozenje
         LDA x
         MUL y
         STA prod
-        . kvocient
+.        . kvocient
         LDA x
         DIV y
         STA quot
-        . mod
+.        . mod
         LDA y
         MUL quot
         STA mod

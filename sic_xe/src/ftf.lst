@@ -1,0 +1,9 @@
+00000            prog  START   0    
+00000  D90003    read  RD      #3    
+00003  290000          COMP    #0    
+00006  332006          JEQ     halt    
+00009  DD0005          WD      #5    
+0000C  372FF1          JGT     read    
+0000F  3F2FFD    halt  J       halt    
+00012                  END     prog    
+                  

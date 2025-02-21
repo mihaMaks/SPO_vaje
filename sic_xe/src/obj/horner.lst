@@ -1,0 +1,53 @@
+00000            poly         START   0    . x⁴+2x³+3x²+4x+5 v točki x=2.
+00000  052069                 LDX     #in    
+00003  13205D                 STX     table_index    
+00006  052057    LOOP         LDX     #a4    
+00009  13205A                 STX     koef_index    
+0000C  6A2054                 LDB     @table_index    
+                  
+0000F  6E2054    IN_LOOP      LDS     @koef_index    
+00012  4B2060                 JSUB    horner_step    . ai
+00015  0F2051                 STA     a    
+00018  03204B                 LDA     koef_index    
+0001B  1D0003                 SUB     #3    
+0001E  AC01                   RMO     A,X    
+00020  0F2043                 STA     koef_index    
+00023  032043                 LDA     a    
+00026  75202B                 LDT     #a0    
+00029  A015                   COMPR   X,T    
+0002B  372FE1                 JGT     IN_LOOP    
+                  . nalozi a0 in dodaj
+0002E  6E2035                 LDS     @koef_index    
+00031  9040                   ADDR    S,A    
+00033  0E202D                 STA     @table_index    
+                  
+00036  07202A                 LDX     table_index    
+00039  AC10                   RMO     X,A    
+0003B  190003                 ADD     #3    . size of table iteration jump
+0003E  AC01                   RMO     A,X    
+00040  010000                 LDA     #0    
+00043  13201D                 STX     table_index    
+00046  750075                 LDT     #lastin    
+00049  A015                   COMPR   X,T    
+0004B  3B2FB8                 JLT     LOOP    
+0004E  3F2FFD    halt         J       halt    
+                  
+00051  000002    x            WORD    2    
+00054  000005    a0           WORD    5    
+00057  000004    a1           WORD    4    
+0005A  000003    a2           WORD    3    
+0005D  000002    a3           WORD    2    
+00060  000001    a4           WORD    1    
+00063  000000    table_index  RESW    1    
+00066  000000    koef_index   RESW    1    
+00069  000000    a            RESW    1    
+0006C  000000    in           WORD    0    
+0006F  000005    in2          WORD    5    
+00072  00002D    in3          WORD    45    
+00075            lastin       EQU     *    
+                  
+                  
+                  
+00075  9040      horner_step  ADDR    S,A    
+00077  9830                   MULR    B,A    
+00079  4F0000                 RSUB        

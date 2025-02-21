@@ -1,0 +1,104 @@
+00000            BALL        START   0    
+00000  772071                LDT     LIMIT    
+00003  072065                LDX     SCREEN    
+00006  010000                LDA     #0    . OFFSET BALL START
+00009  9001                  ADDR    A,X    
+0000B  01004F                LDA     #79    
+0000E  578000                STCH    0,X    . PRINT BALL
+00011  132051    LOOP        STX     STORAGE_X    
+                  
+                  .. move ball
+00014  13204E                STX     STORAGE_X    
+00017  4B20D3                JSUB    MOVE_XY    
+0001A  4B208C                JSUB    CHECK_R    . CHECK FOR COLLISION
+0001D  4B205D    BACK_R      JSUB    CHECK_DOWN    
+00020  4B2065    BACK_D      JSUB    CHECK_UP    
+00023  6D0001                LDS     #1    
+00026  6B2051                LDB     OOB    
+00029  A043                  COMPR   S,B    . CHECK IF COLLISION IS DETECTED
+0002B  37200C                JGT     NOT_OOB    . IF OUT OF BOUNDS RETURN TO PREVIOUS POSITION AND MOVE FROM THERE
+0002E  072034                LDX     STORAGE_X    
+00031  4B20B9                JSUB    MOVE_XY    
+00034  6D0000                LDS     #0    
+00037  7F2040                STS     OOB    
+0003A  032025    NOT_OOB     LDA     STORAGE_A    
+0003D  578000                STCH    0,X    . PRINT BALL
+                  
+00040  AC04                  RMO     A,S    . ERASE BALL
+00042  010000                LDA     #0    
+00045  132020                STX     STORAGE_X2    . STORE CURRENT X
+00048  07201A                LDX     STORAGE_X    . LOAD PREVIOUS X
+0004B  578000                STCH    0,X    
+0004E  072017                LDX     STORAGE_X2    . LOAD CURRENT X
+00051  AC40                  RMO     S,A    
+00053  3F2FBB                J       LOOP    
+                  
+                  . VECTOR OF BALL MOVEMENT
+00056  000001    DX          WORD    X'000001'    
+00059  000001    DY          WORD    X'000001'    
+0005C  000000    ST_DY       WORD    X'000000'    
+0005F  000000    ST_DX       WORD    X'000000'    
+00062  000000    STORAGE_A   RESW    1    
+00065  000000    STORAGE_X   RESW    1    
+00068  00B800    STORAGE_X2  WORD    X'00B800'    
+                  
+                  . Default data for screen
+0006B  00B800    SCREEN      WORD    X'00B800'    
+0006E  000050    WIDTH       BYTE    X'000050'    
+00071  000019    HEIGHT      BYTE    X'000019'    
+                  
+00074  00BFCF    LIMIT       WORD    X'00BFCF'    
+00077  FFFFFF    MINUS       WORD    X'FFFFFF'    
+0007A  000000    OOB         WORD    X'000000'    . OUT OF BOUNDS FLAG
+                  
+0007D  6F2FF4    CHECK_DOWN  LDS     LIMIT    
+00080  A014                  COMPR   X,S    
+00082  37200E                JGT     BOUNCE_DY    
+00085  4F0000                RSUB        
+00088  6F2FE0    CHECK_UP    LDS     SCREEN    
+0008B  A014                  COMPR   X,S    
+0008D  3B2003                JLT     BOUNCE_DY    
+00090  4F0000                RSUB        
+00093  6F2FC3    BOUNCE_DY   LDS     DY    
+00096  6B2FC0                LDB     DY    
+00099  9443                  SUBR    S,B    
+0009B  9443                  SUBR    S,B    
+0009D  7B2FB9                STB     DY    
+000A0  6D0001                LDS     #1    
+000A3  7F2FD4                STS     OOB    
+000A6  4F0000                RSUB        
+000A9  0F2FB6    CHECK_R     STA     STORAGE_A    
+000AC  032FB6                LDA     STORAGE_X    
+000AF  AC13                  RMO     X,B    
+000B1  6F2FB7                LDS     SCREEN    
+000B4  0100F0                LDA     #240    
+000B7  9404                  SUBR    A,S    
+000B9  032FA9                LDA     STORAGE_X    
+000BC  9440                  SUBR    S,A    
+000BE  9443                  SUBR    S,B    
+000C0  6F2FAB                LDS     WIDTH    
+000C3  9C40                  DIVR    S,A    
+000C5  9C43                  DIVR    S,B    
+000C7  9403                  SUBR    A,B    
+000C9  032F8D                LDA     DY    
+000CC  A003                  COMPR   A,B    
+000CE  032F91                LDA     STORAGE_A    
+000D1  332F49                JEQ     BACK_R    
+000D4  3F2000                J       BOUNCE_DX    
+000D7  6F2F7C    BOUNCE_DX   LDS     DX    
+000DA  6B2F79                LDB     DX    
+000DD  9443                  SUBR    S,B    
+000DF  9443                  SUBR    S,B    
+000E1  7B2F72                STB     DX    
+000E4  6D0001                LDS     #1    
+000E7  7F2F90                STS     OOB    
+000EA  3F2F30                J       BACK_R    
+000ED  0F2F72    MOVE_XY     STA     STORAGE_A    
+000F0  032F66                LDA     DY    
+000F3  232F78                MUL     WIDTH    
+000F6  6B2F5D                LDB     DX    
+000F9  9030                  ADDR    B,A    
+000FB  9001                  ADDR    A,X    
+000FD  032F62                LDA     STORAGE_A    
+00100  4F0000                RSUB        
+00103                        END     BALL    
